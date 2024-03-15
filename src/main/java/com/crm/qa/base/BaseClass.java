@@ -32,10 +32,10 @@ public class BaseClass {
 	
 	public static void initialization() {
 		String browserName= prop.getProperty("browser");
-		if(browserName.equals("chrome")) {
+		if(browserName.equalsIgnoreCase("chrome")) {
 			driver= new ChromeDriver();
 		}
-		if(browserName.equals("FF")) {
+		else if(browserName.equalsIgnoreCase("FF")||browserName.equalsIgnoreCase("Firefox")) {
 			driver= new FirefoxDriver();
 		}
 		
