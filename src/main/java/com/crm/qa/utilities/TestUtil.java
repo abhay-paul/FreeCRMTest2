@@ -37,6 +37,7 @@ public class TestUtil extends BaseClass {
 		}
 
 		try {
+
 			book = WorkbookFactory.create(fis);
 		} catch (EncryptedDocumentException | IOException e) {
 			e.printStackTrace();
@@ -49,40 +50,36 @@ public class TestUtil extends BaseClass {
 
 		for (int i = 0; i < sheet.getLastRowNum(); i++) {
 			for (int j = 0; j < sheet.getRow(0).getLastCellNum(); j++) {
-//				if(sheet.getRow(i+1).getCell(i).getCellType()==CellType.STRING) {
+//				if(sheet.getRow(i+1).getCell(j).getCellType()==CellType.STRING) {
 //					data[i][j] = sheet.getRow(i + 1).getCell(j).toString();
 //				}
-//				else if(sheet.getRow(i+1).getCell(i).getCellType()==CellType.NUMERIC){
+//				else if(sheet.getRow(i+1).getCell(j).getCellType()==CellType.NUMERIC){
 //					data[i][j] = NumberToTextConverter.toText(sheet.getRow(i + 1).getCell(j).getNumericCellValue());
 //				}
 				data[i][j] = sheet.getRow(i + 1).getCell(j).toString();
 			}
 		}
-		
+
 		return data;
 	}
-	
+
 	public static void takeScreenshot(String methodName) {
-		
-		if(uniquescreenshotfolder==null) {
-			LocalDateTime localDateTime= LocalDateTime.now();
-			DateTimeFormatter dateTimeFormatter= DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");
-			uniquescreenshotfolder=localDateTime.format(dateTimeFormatter);
+
+		if (uniquescreenshotfolder == null) {
+			LocalDateTime localDateTime = LocalDateTime.now();
+			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");
+			uniquescreenshotfolder = localDateTime.format(dateTimeFormatter);
 			System.out.print(uniquescreenshotfolder);
 		}
-		
-		File src= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(src, new File("E:\\Dev\\Speed400Journey\\FreeCRMTest\\"
-					+ "FreeCRMTest2\\Screenshot\\"+uniquescreenshotfolder+"\\"+methodName));
+			FileUtils.copyFile(src, new File("E:\\Dev\\Speed400Journey\\FreeCRMTest\\" + "FreeCRMTest2\\Screenshot\\"
+					+ uniquescreenshotfolder + "\\" + methodName));
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
-	
+
 }
-
-
-
-
